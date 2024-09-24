@@ -20,5 +20,8 @@
   "firestore": {
     "rules": "backend/firestore.rules",
     "indexes": "backend/firestore.indexes.json"
+  },
+  "database": {
+    "rules": "backend/database.rules.json"
   }
 }
