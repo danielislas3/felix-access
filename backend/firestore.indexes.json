@@ -1,0 +1,18 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "devices",
+      "queryScope": "COLLECTION",
+      "fields": [
+        {
+          "fieldPath": "accessDoor",
+          "order": "ASCENDING"
+        },
+        {
+          "fieldPath": "gate",
+          "order": "ASCENDING"
+        }
+      ]
+    }
+  ]
+}
