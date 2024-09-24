@@ -1,48 +1,25 @@
 import mqtt from 'mqtt';
 
-class MqttService {
-  private client: mqtt.MqttClient;
+const client = mqtt.connect('mqtt://broker-url');
 
-  constructor() {
-    this.client = mqtt.connect('mqtt://mqtt.example.com'); // Replace with your MQTT broker URL
-    this.client.on('connect', () => {
-      console.log('Connected to MQTT broker');
-      this.subscribeToTopics();
+export const sendOpenAccessDoorCommand = (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    client.publish('access-door/open', 'open', (err) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve();
     });
-    this.client.on('message', (topic, message) => {
-      this.handleMessage(topic, message.toString());
+  });
+};
+
+export const sendOpenGateCommand = (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    client.publish('gate/open', 'open', (err) => {
+      if (err) {
+        return reject(err);
+      }
+      resolve();
     });
-  }
-
-  private subscribeToTopics() {
-    this.client.subscribe('access-door');
-    this.client.subscribe('gate');
-  }
-
-  private handleMessage(topic: string, message: string) {
-    switch (topic) {
-      case 'access-door':
-        this.handleAccessDoorMessage(message);
-        break;
-      case 'gate':
-        this.handleGateMessage(message);
-        break;
-      default:
-        console.log(`Received message on unknown topic: ${topic}`);
-    }
-  }
-
-  private handleAccessDoorMessage(message: string) {
-    // Handle the message for the access door relay
-    console.log(`Received message for access door: ${message}`);
-    // Add your logic here to control the access door relay
-  }
-
-  private handleGateMessage(message: string) {
-    // Handle the message for the gate relay
-    console.log(`Received message for gate: ${message}`);
-    // Add your logic here to control the gate relay
-  }
-}
-
-export default MqttService;
+  });
+};

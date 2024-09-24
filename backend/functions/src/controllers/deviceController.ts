@@ -1,22 +1,11 @@
-import { Request, Response } from 'express';
-import { MqttService } from '../services/mqttService';
+import { sendOpenAccessDoorCommand, sendOpenGateCommand } from '../services/mqttService';
 
-class DeviceController {
-  private mqttService: MqttService;
+export const openAccessDoor = async (): Promise<void> => {
+  console.log('Access door is being opened');
+  await sendOpenAccessDoorCommand();
+};
 
-  constructor() {
-    this.mqttService = new MqttService();
-  }
-
-  public openAccessDoor(req: Request, res: Response): void {
-    this.mqttService.publish('access-door', 'open');
-    res.status(200).json({ message: 'Access door opened' });
-  }
-
-  public openGate(req: Request, res: Response): void {
-    this.mqttService.publish('gate', 'open');
-    res.status(200).json({ message: 'Gate opened' });
-  }
-}
-
-export default DeviceController;
+export const openGate = async (): Promise<void> => {
+  console.log('Gate is being opened');
+  await sendOpenGateCommand();
+};
