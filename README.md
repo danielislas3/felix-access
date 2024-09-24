@@ -1,63 +1,35 @@
-# IoT Project
+# FelixAccess
 
-This project consists of a backend and a frontend for controlling two Shelly relays via MQTT. The relays are used to control the access door and the gate of a private property. The backend provides APIs for device control and user registration, while the frontend is a Vue single-page application that can be used as a Progressive Web App (PWA).
+**FelixAccess** is a remote access control system that allows users to manage a door and gate via a web application. The project combines a **Firebase-based backend** and a **Vue.js frontend** that can be used on both desktop and mobile devices.
 
-## Backend
+## Project Overview
 
-The backend is built using Firebase and consists of Firebase Cloud Functions and Firestore.
+The purpose of **FelixAccess** is to provide a simple and efficient solution for controlling access to a property. Authorized users can open and close the door and gate remotely through the web, eliminating the need to be physically present. The system can be managed from anywhere with an internet connection, offering both convenience and security.
 
-### Firebase Cloud Functions
+### Backend
 
-The backend functions are implemented in TypeScript and are located in the `backend/functions/src` directory. The entry point of the functions is `index.ts`, which sets up the Firebase admin SDK and exports the functions.
+The **backend** is built using **Firebase**, a cloud service that manages user authentication, handles the operations to control the door and gate, and logs access records. Additionally, the backend processes requests to open and close the access points that are sent from the web application.
 
-The device control functionality is implemented in the `controllers/deviceController.ts` file. It exports a class `DeviceController` with methods to control the devices, such as `openAccessDoor` and `openGate`.
+The system uses the **MQTT protocol** to communicate with the access devices (the door and gate). **MQTT** is a lightweight messaging protocol that allows real-time communication between the backend and the devices, ensuring a fast and efficient response when opening or closing the access points.
 
-The routes for device control are defined in the `routes/deviceRoutes.ts` file. It exports a function `setDeviceRoutes` which sets up the routes using the `DeviceController`.
+### Frontend
 
-The MQTT communication with the Shelly relays is handled by the `services/mqttService.ts` file. It exports a class `MqttService` which handles the MQTT communication.
+The **frontend** is a web application built with **Vue.js** that offers a user-friendly interface. Through this interface, users can:
+- View the current status of the door and gate.
+- Open or close both access points with a single click.
+- Access the system from any device, as the application is optimized for both mobile and desktop use.
 
-The `types/index.ts` file exports interfaces and types used in the backend, such as `Device`, `User`, and `MqttMessage`.
+## Main Features
 
-The dependencies and scripts for the Firebase Cloud Functions are listed in the `backend/functions/package.json` file.
+1. **Remote Access Control**: Users can open and close the door and gate remotely through the web application, without being physically present.
+2. **User Security and Management**: User management ensures that only authorized individuals can perform operations within the system.
+3. **Real-Time Accessibility**: The status of the door and gate is updated in real-time, providing users with accurate information about each access point.
+4. **MQTT Protocol**: The system utilizes **MQTT** to send commands to open and close the devices, ensuring efficient and fast communication.
 
-### Firestore
+## Objective
 
-The security rules for the Firestore database are defined in the `backend/firestore.rules` file. It specifies the access rules for the collections and documents.
+The goal of **FelixAccess** is to provide a reliable and accessible access control system that enhances security and convenience by eliminating the need for physical operations.
 
-The indexes configuration for the Firestore database is defined in the `backend/firestore.indexes.json` file. It specifies the fields to index for efficient querying.
+---
 
-The `backend/firebase.json` file is the configuration file for Firebase. It specifies the hosting and function deployment settings.
-
-## Frontend
-
-The frontend is a Vue single-page application located in the `frontend` directory.
-
-The HTML template for the application is defined in the `frontend/public/index.html` file. It includes the necessary scripts and stylesheets.
-
-The static assets such as images or fonts are located in the `frontend/src/assets` directory.
-
-The main Vue component of the application is defined in the `frontend/src/App.vue` file. It defines the overall layout and includes the router view.
-
-The `frontend/src/components/DeviceControl.vue` file exports a Vue component `DeviceControl` which displays the controls for the devices and communicates with the backend.
-
-The main view of the application is defined in the `frontend/src/views/Home.vue` file. It includes the `DeviceControl` component.
-
-The entry point of the Vue application is the `frontend/src/main.ts` file. It initializes the Vue app and mounts it to the DOM.
-
-The Vue router configuration is defined in the `frontend/src/router/index.ts` file. It defines the routes for the application.
-
-The dependencies and scripts for the Vue application are listed in the `frontend/package.json` file.
-
-The TypeScript configuration for the Vue application is defined in the `frontend/tsconfig.json` file.
-
-The Vue CLI configuration is defined in the `frontend/vue.config.js` file. It specifies the build and development settings.
-
-## Other
-
-The `.gitignore` file specifies the files and directories to be ignored by Git.
-
-The `README.md` file contains the documentation for the project.
-
-```
-
-Please note that the above contents are just a template and you may need to modify them according to your specific project requirements.
+## [Ver este documento en español](README-ES.md)
