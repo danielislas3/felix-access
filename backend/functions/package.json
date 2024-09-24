@@ -1,5 +1,5 @@
 {
-  "name": "iot-project-backend-functions",
+  "name": "felix-access-backend-functions",
   "version": "1.0.0",
   "description": "Backend functions for the IoT project",
   "main": "src/index.ts",
